@@ -1,0 +1,14 @@
+﻿AMDNR_XR_RENDER_SCALE=0.80
+AMDNR_XR_ASYNC=1
+AMDNR_XR_CROP=1280x720
+AMDNR_XR_COVER=1.0
+AMDNR_XR_TEMPORAL=0
+AMDNR_XR_UPSCALE=1
+AMDNR_XR_UPSCALE_SHARPEN=0.30
+AMDNR_XR_SMALL_TIERS=1
+AMDNR_XR_GAZE_MAX_STEP=32
+AMDNR_XR_DUMP=0
+AMDNR_XR_SKIP=0
+# unset -> default: GAZE_DEAD_ZONE=128, ROUNDNESS=0, FEATHER=15%
+# feature set: async pipeline (answer pasted at this frame's rect, per-pixel shift off),
+#              Cheeky shape-distance feather, window-travel cap, peak-shift logging

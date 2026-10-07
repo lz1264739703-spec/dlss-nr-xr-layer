@@ -1,0 +1,16 @@
+# 构建产物、日志与运行时（不入库）
+*.obj
+*.exe
+*.dll
+*.lib
+*.exp
+*.pdb
+*.log
+build-*.log
+dump/
+
+# 第三方运行时与权重（走 Release 附件）
+*.pak
+nvngx_dlssnr.dll
+vrclient_x64.dll
+nvngx.dll

@@ -1,0 +1,21 @@
+{
+    "file_format_version": "1.0.0",
+    "api_layer": {
+        "name": "XR_APILAYER_AMDNR_neural_renderer",
+        "library_path": ".\\AmdnrXrLayer.dll",
+        "implementation_version": "1",
+        "description": "AMDNR neural renderer applied to OpenXR eye buffers",
+        "api_version": "1.0.62",
+        "functions": {
+            "xrNegotiateLoaderApiLayerInterface": "AmdnrXrLayer_xrNegotiateLoaderApiLayerInterface"
+        },
+        "instance_extensions": [
+            {
+                "name": "XR_KHR_composition_layer_depth",
+                "spec_version": 1
+            }
+        ],
+        "device_extensions": [],
+        "disable_environment": "AMDNR_XR_LAYER_DISABLE"
+    }
+}
