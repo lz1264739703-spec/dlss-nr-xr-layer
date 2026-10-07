@@ -2,6 +2,16 @@
 
 一个 **OpenXR 隐式 API 层**：拦截应用提交给合成器的投影层，把画面中央一块**神经窗口**（大小、位置可调）交给 **DLSS 神经降噪（DLSS-NR）** 处理，再把结果贴回眼缓冲区；剩下的画面保持原样。两版做同一件事，走的是两条完全不同的后端：
 
+## 亮点（关键词）
+
+- **让 DLSS 5 / DLSS-NR 在 VR 里真正显示出来**——DLSS5 神经降噪原本没有 VR 通路、无法在头显里显示；这一层把它的输出接进 OpenXR 的提交路径，双眼都能看到降噪后的画面。
+- **任意 VR 游戏通用，免逐游戏适配**——以 **OpenXR 隐式 API 层**（implicit API layer）工作，在应用提交投影层时处理：不需要游戏原生支持 DLSS、不改游戏文件、不注入引擎，任何走 OpenXR 的 VR 游戏都能用（Half-Life: Alyx 实测）。
+- **两套后端，一个层**——AMD（lmxxf / DLSS5-NR 运行时，HIP）与 NVIDIA（驱动 NGX + DLSS-NR）同一份层源码、同一套控制面板。
+- **只算"神经窗口"**——只裁画面中央一块交给网络，其余画面原样保留：开销可控，窗口大小/位置可调并跟随眼动。
+- **实时调参 + 抗冻结的尺寸策略**——浏览器面板随改随生效；64 px 量化 + 75% 保持 + 400 ms 停稳，把"拖滑块每步冻一次"变成"停手后只重建一次"。
+
+> 关键词：`DLSS5` `DLSS 5` `DLSS-NR` `神经降噪` `Neural Rendering` `denoiser` `VR` `VR 游戏` `任意 VR 游戏` `OpenXR` `OpenXR 隐式层` `implicit API layer` `免游戏适配` `AMD` `RX 9070` `NVIDIA` `NGX` `HIP` `Half-Life: Alyx`
+
 | | `amd/`（AMDNR） | `nvidia/`（NGX） |
 | --- | --- | --- |
 | 后端 | lmxxf / DLSS5-NR 运行时（HIP；本地构建的 `LmxxfNrRuntime.dll` + 目录树资产：HIP 模块、权重、着色器） | 驱动里的 NGX 核心 + 预发布 DLSS-NR 运行时（`nvngx_dlssnr.dll`） |
