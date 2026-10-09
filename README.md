@@ -45,7 +45,7 @@
 2. 以**管理员**运行 `install.ps1`（隐式层注册在 HKLM；脚本也会把 OpenVR 路由指到包内的 OpenComposite）。约半数配置需要把 `opencomposite.ini` 一起放到 **游戏 exe 同目录**（或层目录），让游戏走 OpenComposite 而不是 SteamVR。
 3. 启动游戏。层日志在层目录的 `AmdnrXrLayer.log`，控制面板默认 `http://127.0.0.1:8787`。
 
-要从 **OpenVR 游戏**（Alyx、Arizona Sunshine 等）进入，需要 OpenComposite 桥——构建构成、两种安装方式与实测边界见 [docs/OPENVR-GAMES.md](docs/OPENVR-GAMES.md)。
+要从 **OpenVR 游戏**（Alyx、Arizona Sunshine 等）进入，需要 OpenComposite 桥——构建构成、两种安装方式与实测边界见 [docs/OPENVR-GAMES.md](docs/OPENVR-GAMES.md)。要和插帧层 **OFXR Bridge** 一起用（顺序契约、合用档位、冲突排查）：见 [docs/NR-AND-FRAMEGEN.md](docs/NR-AND-FRAMEGEN.md)。
 
 卸载：`uninstall.ps1`。
 

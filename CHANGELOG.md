@@ -6,6 +6,7 @@
 - 新构建已部署到本机 OpenVR 路由（`opencomposite-runtime\bin\vrclient_x64.dll`，回滚副本 `vrclient_x64.dll.pre-gaze-build`）。
 - 探针实测（`xr-ext-probe`）：**Pimax PiOpenXR 每进程只允许一个 XR 实例**——并发建第二个实例一律 `-10`（`XR_ERROR_LIMIT_REACHED`），与扩展清单无关（先销毁已建实例后，含眼动/时钟换算的 7 项全量清单逐项 `XR_SUCCESS`）。据此记录 Kayak VR 的边界：**自己已用 OpenXR 的游戏不要再注入 OpenComposite**。
 - 新增 [docs/OPENVR-GAMES.md](docs/OPENVR-GAMES.md)：桥的构成、两种安装方式（单游戏投放 / 全局路由）、实测边界、GPLv3 标注要求。
+- 新增 [docs/NR-AND-FRAMEGEN.md](docs/NR-AND-FRAMEGEN.md)：与插帧层 **OFXR Bridge** 的共存契约——**NR 在上、OFXR 在下**（顺序正确时合成帧不经过 NR），合用时 NR 默认降一档保半率预算，`AMDNR_XR_DEPTH_PROBE` 保持关闭；Pimax 默认留 PiOpenXR 保眼动（备用路径 SteamVR，眼动失效）；含排查矩阵与实机验证步骤。
 
 ## 2026-10-07 — 冻结版（当前）
 
