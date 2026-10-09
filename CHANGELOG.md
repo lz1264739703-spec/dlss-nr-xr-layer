@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-10-09 — OpenVR 桥同步（OpenComposite）
+
+- 把**新版 OpenVR 接口注册**（`IVRCompositor_029` / `IVRSystem_026` / `IVROverlay_028` / `IVRInput_011`）与 **`IVRInput_011` 眼动查询的真实现**（`XR_EXT_eye_gaze_interaction` → `VREyeTrackingData_t`：origin + 视线方向 1 米处的 `vGazeTarget`，运行时无眼动时返回 inactive）合并进本机在用的 OpenComposite 构建并重编译。此前随包的那份只登记了这两个眼动入口，函数体是 `return VRInputError_NoData;`。
+- 新构建已部署到本机 OpenVR 路由（`opencomposite-runtime\bin\vrclient_x64.dll`，回滚副本 `vrclient_x64.dll.pre-gaze-build`）。
+- 探针实测（`xr-ext-probe`）：**Pimax PiOpenXR 每进程只允许一个 XR 实例**——并发建第二个实例一律 `-10`（`XR_ERROR_LIMIT_REACHED`），与扩展清单无关（先销毁已建实例后，含眼动/时钟换算的 7 项全量清单逐项 `XR_SUCCESS`）。据此记录 Kayak VR 的边界：**自己已用 OpenXR 的游戏不要再注入 OpenComposite**。
+- 新增 [docs/OPENVR-GAMES.md](docs/OPENVR-GAMES.md)：桥的构成、两种安装方式（单游戏投放 / 全局路由）、实测边界、GPLv3 标注要求。
+
 ## 2026-10-07 — 冻结版（当前）
 
 这一版的标题是"把改分辨率时的反复冻结，变成一次真实变化一次重建"。
